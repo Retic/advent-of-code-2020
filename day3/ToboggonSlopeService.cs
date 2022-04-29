@@ -55,6 +55,24 @@
             return rawData;
         }
 
+
+        public int FindPath(string rawData, int dX, int dY)
+        {
+            var slope = ParseRawData(rawData);
+            var count = 0;
+            var x = 0;
+
+            for (int y = 0; y < slope.Length; y += dY)
+            {
+                if (slope[y][x] == "#") count++;
+                x = (x + dX) % slope[0].Length;
+                Console.WriteLine((x + dX) % slope.Length);
+            }
+
+            PrintPath(slope, dX, dY);
+            return count;
+        }
+
         public int FindPath(string[][] slope, int dX, int dY)
         {
             var count = 0;
